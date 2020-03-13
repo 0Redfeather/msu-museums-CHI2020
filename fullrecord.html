@@ -56,15 +56,13 @@
                     </div>
                     <div class="portfolio-caption">
                         <h4 class="text-left">Description</h4>
-                        <p class="text-left text-muted">&lt;?php description&gt; - Test addition</p>
+                        <p class="text-left text-muted">
                         <?php
-                          if( $_GET["name"] || $_GET["age"] ) {
-                            echo "Welcome ". $_GET['name']. "<br />";
-                            echo "You are ". $_GET['age']. " years old.";
-
+                          if( $_GET["description"]) {
+                            echo "description: ". $_GET['description'];
                             exit();
                           }
-                          ?>
+                          ?></p>
                     </div>
                     <div class="portfolio-caption">
                         <h4 class="text-left">Type</h4>
