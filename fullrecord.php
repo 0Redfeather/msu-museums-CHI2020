@@ -1,9 +1,20 @@
 <?php
 
+https://kora.anthropology.msu.edu/projects/7/api/search
+ [
+ {
+    "bearer_token": "5e4f0278b9e13",
+    "form": Heritage_Asset_7_16_
+    "return_fields": [“field 1", “field 2", ...],
+ }
+ ]
+
+define("https://kora.anthropology.msu.edu/projects/7/api/search","FILL_THIS"); //"http://www.myKoraInstall.com/api/search"
+
 static function formSearchBuilder($fid,$token,$flags,$fields,$sort,$queries,$qLogic,$index=null,$count=null,$filterCount=null,$fitlerFields=null,$assocFields=null) {
     $form = array();
-    $form["form"] = $fid;
-    $form["bearer_token"] = $token;
+    $form["Heritage_Asset_7_16_"] = $fid;
+    $form["5e4f0278b9e13"] = $token;
 
     $form["data"] = in_array("data",$flags) ? in_array("data",$flags) : false;
     $form["meta"] = in_array("meta",$flags) ? in_array("meta",$flags) : false;
