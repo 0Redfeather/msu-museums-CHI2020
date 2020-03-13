@@ -4,11 +4,14 @@ API URL: https://kora.anthropology.msu.edu/projects/7/{API_FUNCTION_URI}
 
 
 <?php
-$API = https://kora.anthropology.msu.edu/projects/7/api/search
-echo $_POST[];
+echo $_POST[https://kora.anthropology.msu.edu/projects/7/api/search];
 ?>
 
-Record Search
+<!-- Record Search -->
+curl
+W3
+
+jquery - ajax - if callin on the client side
 
 https://kora.anthropology.msu.edu/projects/7/api/search
  [
@@ -18,12 +21,18 @@ https://kora.anthropology.msu.edu/projects/7/api/search
     "return_fields": [“field 1", “field 2", ...],
  }
  ]
+kora -> app ->  field helper -> kora search
+-- form search builder - 80ish
 
-<?php
-if(isset($_POST['submit'])
-{
-echo("First name: " . $_POST['firstname'] . "<br />\\n");
-echo("Last name: " . $_POST['lastname'] . "<br />\\n");
-}
-?>
-
+<!-- Is this how I would call a field? -->
+ <div class="portfolio-caption">
+     <h4 class="text-left">Description</h4>
+     <p class="text-left text-muted"> <strong>Description:</strong>
+       <php? echo
+       $_POST[{
+          "bearer_token": "5e4f0278b9e13",
+          "form": 16,
+          "return_fields": ["description"],
+       }]
+       ?>
+       </p>
