@@ -57,12 +57,18 @@
                     <div class="portfolio-caption">
                         <h4 class="text-left">Description</h4>
                         <p class="text-left text-muted">
-                        <?php
+                          <?php
+                          echo "description: ". $_GET['description'];
+                          exit();
+                        }
+                        ?></p>
+                        <!--<?php
                           if( $_GET["description"]) {
                             echo "description: ". $_GET['description'];
                             exit();
                           }
-                          ?></p>
+                          ?></p> -->
+
                     </div>
                     <div class="portfolio-caption">
                         <h4 class="text-left">Type</h4>
