@@ -39,7 +39,7 @@
                     <br>
                     <br>
                <!-- This is the code for users to enter stuff into a search -->
-                <form action="fullRecord.php" method="post">
+                <form action="fullrecord.php" method="post">
                     <label for="koraID">Kora ID:</label>
                     <input type="text" name="koraID" id="koraID" required>
                     <br>
