@@ -201,6 +201,66 @@ $flags = array("data"); // "meta"
         }
     }
 
+// Get functions to get various things from Kora's API
+
+function getProjectForms()
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "https://kora.anthropology.msu.edu/api/projects/7/forms");
+    $data = curl_exec($curl);
+
+    //json_decode($data);
+    //if(!$result = curl_exec($curl))
+    //{
+    //   trigger_error(curl_error($curl));
+    //}
+    curl_close($curl);
+    return $data;
+    //return $result;
+    //$result = json_decode($result,true);
+
+    //if(isset($result['records']))
+    //  return $result['records'];
+    //else
+    //   return $result;
+}
+
+function getFormFields()
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "https://kora.anthropology.msu.edu/api/projects/7/forms/16/fields");
+    $data = curl_exec($curl);
+
+    //json_decode($data);
+    //if(!$result = curl_exec($curl))
+    //{
+    //   trigger_error(curl_error($curl));
+    //}
+    curl_close($curl);
+    return $data;
+    //return $result;
+    //$result = json_decode($result,true);
+
+    //if(isset($result['records']))
+    //  return $result['records'];
+    //else
+    //   return $result;
+}
+
+//$projectForms = getProjectForms();
+//settype($projectForms, "string");
+//$formsJSON = json_decode($projectForms, true);
+//echo gettype($formsJSON);
+//echo $formsJSON;
+// print_r($projectForms);
+
+
+$formFields = getFormFields();
+settype($formFields, "string");
+$formFields = json_decode($formFields);
+// echo gettype($formFields);
+// echo $formFields;
+
     // $data = getData($value);
 
     //echo "-----DATA SENT-------- " . "\n";
