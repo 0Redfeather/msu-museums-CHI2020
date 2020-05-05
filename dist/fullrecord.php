@@ -134,7 +134,7 @@ $record = getData($array);
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <h2 class="text-uppercase"><?php echo $record[0][$koraID]['Image'][0]['name'];?></h2>
-                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1-full.jpg">
+                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src=<?php echo $record[0][$koraID]['Image'][0]['url'];?>>
                                     <ul class="list-inline">
                                         <li><strong>Image Caption: </strong><?php echo $record[0][$koraID]['Image'][0]['caption'];?></li>
                                         <li><strong>Image Date: </strong><?php echo $record[0][$koraID]['Image'][0]['timestamp'];?></li>
