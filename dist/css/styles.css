@@ -10098,6 +10098,17 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
+header.masthead2{
+  padding-top: 10rem;
+  padding-bottom: 4rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("../assets/img/header-bg-fullrecord.JPG");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: 100%;
+}
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
   font-style: italic;

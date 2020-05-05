@@ -1,7 +1,7 @@
 <?php
 define("koraApiURL","https://kora.anthropology.msu.edu/api/search"); //"http://www.myKoraInstall.com/api/search"
 
-$fieldValues = array("Asset ID", "Description", "General Type", "Heritage Asset Type", "Display Date", "Cultural Affiliations", "Period Name", "Name Site", "Copyright Credit Line");
+$fieldValues = array("Asset ID", "Description", "General Type", "Heritage Asset Type", "Display Date", "Cultural Affiliations", "Period Name", "Name Site", "Image", "Copyright Credit Line");
 // "Associated_Collection_7_16_",
 $token = '5e4f0278b9e13';
 $fid = 'Heritage_Asset_7_16_'; // 16
@@ -255,9 +255,9 @@ function getFormFields()
 // print_r($projectForms);
 
 
-$formFields = getFormFields();
-settype($formFields, "string");
-$formFields = json_decode($formFields);
+// $formFields = getFormFields();
+// settype($formFields, "string");
+// $formFields = json_decode($formFields);
 // echo gettype($formFields);
 // echo $formFields;
 
