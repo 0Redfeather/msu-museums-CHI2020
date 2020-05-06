@@ -72,12 +72,12 @@
         <div class="container">
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. A better browser feature is forthcoming</h3>
+                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs have to be pasted into the search bar, but a keyword search is in the works.</h3>
                     <h4><?php
 
                         //print_r($record);
 
-                        $kidAvailable = array_keys($record[0]);
+                        $kidAvailable = array_keys($record['0']);
 
                         //print_r($kidAvailable);
 
@@ -105,7 +105,7 @@
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="col-lg-4 text-lg-right">MSU Archaeology Digital Collections</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://chi.franc230.msu.domains/" property="cc:attributionName" rel="cc:attributionURL">Zach Francis</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
+                <div class="col-lg-4 text-lg-right">MSU Archaeology Digital Collections by <a xmlns:cc="http://creativecommons.org/ns#" href="https://chi.franc230.msu.domains/" property="cc:attributionName" rel="cc:attributionURL">Zach Francis</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
             </div>
         </div>
     </footer>
