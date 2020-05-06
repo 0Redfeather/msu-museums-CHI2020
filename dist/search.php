@@ -16,6 +16,15 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
+
+<?php
+    include 'functions.php';
+    $data = formSearchBuilder($fid, $token, $flags, $fieldValues, null);
+    $array = array();
+    $array["forms"] = json_encode(array($data));
+
+    $record = getData($array);
+?>
 <body id="page-top">
 
 <!-- Navigation-->
@@ -62,11 +71,30 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">About</h2>
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records
-                    <?php
-                    echo "these are the records" . "\n";
+                <h3 class="text-muted section-subheading">Here is a list of all Kora Records</h3>
+                    <h4><?php
+
+                        print_r($record);
+                        $kidAvailable = array_keys($record[0]);
+
+                        print_r($kidAvailable);
+
+                        echo "<br>";
+
+                        foreach($kidAvailable as $item) {
+                            //$imageName = $record[0][$item]['Image'][0]['name'];
+                            //$file = $item['Asset ID'] . ".jpg";
+                            //grab_image($file,$item,$imageName); // Putting the image in
+                            echo "<img class=\"img-fluid\" src=\"temp.jpg\"></a>";
+                            echo "<strong>KID: </strong>" . $item . " | ";
+                            echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
+                            echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
+                            echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . "<br>";
+                            //unlink($file);
+                        }
+
                     ?>
-                </h3>
+
             </div>
         </div>
     </section>

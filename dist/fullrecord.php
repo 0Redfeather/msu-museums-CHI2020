@@ -75,7 +75,7 @@ $record = getData($array);
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-12 offset-md-0 text-center">
-                    <h2 class="text-uppercase section-heading">Full Record Page</h2>
+                    <h2 class="text-uppercase section-heading">Full Record</h2>
                     <!-- <h3 class="section-subheading text-muted">Full Record Page</h3> -->
                 </div>
             </div>
@@ -84,26 +84,29 @@ $record = getData($array);
                     <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"></div>
-                        </div><img class="img-fluid" src=<?php echo $record[0][$koraID]['Image'][0]['url'];?>></a>
+                        </div>
+                        <?php
+                        $imageName = $record[0][$koraID]['Image'][0]['name'];
+                        grab_image("temp.jpg",$koraID,$imageName);
+                        ?>
+                        <img class="img-fluid" src="temp.jpg"></a>
                     <div class="text-left portfolio-caption">
                         <h4>Asset Image</h4>
                         <p class="text-muted">(click image for metadata)</p>
-                        <?php // print_r($record) // Check out the array data coming in?>
+                        <?php
+                        //print_r($record) // Check out the array data coming in?>
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-7 col-xl-7 portfolio-item"><a class="portfolio-link" data-toggle="modal" href="#portfolioModal6"></a>
                     <div class="text-left portfolio-caption">
-                        <h3>Asset Identification</h3>
+                        <h3>Identification</h3>
                         <p class="text-left text-muted"><strong>Asset ID: </strong><?php echo $record[0][$koraID]['Asset ID']; ?></p>
                         <p class="text-left text-black-50 text-muted"><strong>Collection:</strong> Schmidt Collection</p>
                     </div>
                     <div class="portfolio-caption">
                         <h4 class="text-left">Description</h4>
                         <p class="text-left text-muted"> <strong>Description:</strong> <?php echo $record[0][$koraID]['Description']; ?></p>
-                    </div>
-                    <div class="portfolio-caption">
-                        <h4 class="text-left">Type</h4>
                         <p class="text-left text-muted"><strong>General Type:</strong> <?php echo $record[0][$koraID]['General Type']; ?></p>
                         <p class="text-left text-muted"><strong>Specific Type:</strong> <?php echo $record[0][$koraID]['Heritage Asset Type'][0]; ?></p>
                     </div>
@@ -133,15 +136,21 @@ $record = getData($array);
                         <div class="row">
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
-                                    <h2 class="text-uppercase"><?php echo $record[0][$koraID]['Image'][0]['name'];?></h2>
-                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src=<?php echo $record[0][$koraID]['Image'][0]['url'];?>>
+                                    <h2 class="text-uppercase"><?php echo $imageName; // $record[0][$koraID]['Image'][0]['name'];?></h2>
+                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src="temp.jpg">
                                     <ul class="list-inline">
-                                        <li><strong>Image Caption: </strong><?php echo $record[0][$koraID]['Image'][0]['caption'];?></li>
-                                        <li><strong>Image Date: </strong><?php echo $record[0][$koraID]['Image'][0]['timestamp'];?></li>
+                                        <li><strong>Image Caption: </strong><?php $caption = $record[0][$koraID]['Image'][0]['caption'];
+                                            if (empty($caption)) {
+                                                echo "(no caption)";
+                                            } else {
+                                                echo $caption;
+                                                }
+                                            ?> </li>
+                                        <li><strong>Image Date: </strong><?php echo $record[0][$koraID]['Image'][0]['timestamp'];?> (working on timestamp converter)</li>
                                         <li><strong>Image Size: </strong><?php echo $record[0][$koraID]['Image'][0]['size'];?></li>
                                         <li><strong>Image Type: </strong><?php echo $record[0][$koraID]['Image'][0]['type'];?></li>
                                     </ul>
-                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close Project</span></button></div>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close</span></button></div>
                             </div>
                         </div>
                     </div>

@@ -201,6 +201,24 @@ $flags = array("data"); // "meta"
         }
     }
 
+function grab_image($saveto,$koraID,$imageName){
+    //$ch = curl_init ($url);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://kora.anthropology.msu.edu/files/$koraID/$imageName");
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+    $raw=curl_exec($ch);
+    curl_close ($ch);
+    if(file_exists($saveto)){
+        unlink($saveto);
+    }
+    $fp = fopen($saveto,'x');
+    fwrite($fp, $raw);
+    fclose($fp);
+}
+
 // Get functions to get various things from Kora's API
 
 function getProjectForms()
