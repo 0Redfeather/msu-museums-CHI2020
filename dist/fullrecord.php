@@ -41,17 +41,12 @@ $queries = array($kidQuery);
 
 $data = formSearchBuilder($fid, $token, $flags, $fieldValues, $queries);
 
-//$data = array_walk_recursive($data, function (&$entry) { $entry = mb_convert_encoding($entry,'UTF-8'); });
 
 $array = array();
-//json_encode($data);
 $array["forms"] = json_encode(array($data));
-//$array["format"] = "JSON";
 
-// var_dump($array);
 $record = getData($array);
-//echo "--------------";
-//var_dump($record);
+
 ?>
 
 <body id="page-top">

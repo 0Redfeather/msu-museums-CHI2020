@@ -27,7 +27,6 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Browse</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
             </ul>
         </div>
     </div>
@@ -36,10 +35,11 @@
 <!-- Masthead-->
 <header class="masthead2">
     <div class="container">
-        <div class="masthead-heading text-uppercase">Digital Archaeology Collections</div>
+        <div class="masthead-heading text-uppercase">Browser still under Construction!</div>
     </div>
 </header>
 
+<!-- Browsing Section -->
 <section id="portfolio" class="bg-light">
     <div class="container">
         <div class="row">

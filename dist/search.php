@@ -16,15 +16,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
-
-<?php
-    include 'functions.php';
-    $data = formSearchBuilder($fid, $token, $flags, $fieldValues, null);
-    $array = array();
-    $array["forms"] = json_encode(array($data));
-
-    $record = getData($array);
-?>
 <body id="page-top">
 
 <!-- Navigation-->
@@ -35,11 +26,21 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#kidrecords">available searches</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#kidrecords">Available KIDs</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
+<?php
+   include 'functions.php';
+
+    $data = formSearchBuilder($fid, $token, $flags, $fieldValues, null);
+    $array = array();
+    $array["forms"] = json_encode(array($data));
+
+    $record = getData($array);
+?>
 
 <!--masthead -->
 <header class="masthead">
@@ -59,8 +60,8 @@
         </div>
         <div class="text-center">
             <h4 class="section-heading text-uppercase">*Only Kora ID searches currently available.</h4>
-            <h4> Check Below for a catalog of available Kora IDs, or browse the catalog. </h4>
-            <h4> And please come back to see how the site improves! (Updated: 5/4/2020)</h4>
+            <h4> Check Below for a catalog of available Kora IDs. </h4>
+            <h4> And please come back to see how the site improves! </h4>
         </div>
             <!-- <div class="masthead-heading text-uppercase"></div>
         <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="browse.php">Browse our Records</a> -->
@@ -69,30 +70,27 @@
 
     <section class="page-section bg-light" id="kidrecords">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">About</h2>
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records</h3>
+            <div class="text-left">
+               <!-- <h2 class="section-heading text-uppercase">About</h2> -->
+                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. A better browser feature is forthcoming</h3>
                     <h4><?php
 
-                        print_r($record);
+                        //print_r($record);
+
                         $kidAvailable = array_keys($record[0]);
 
-                        print_r($kidAvailable);
-
-                        echo "<br>";
+                        //print_r($kidAvailable);
 
                         foreach($kidAvailable as $item) {
-                            //$imageName = $record[0][$item]['Image'][0]['name'];
-                            //$file = $item['Asset ID'] . ".jpg";
-                            //grab_image($file,$item,$imageName); // Putting the image in
-                            echo "<img class=\"img-fluid\" src=\"temp.jpg\"></a>";
+                        //$imageName = $record[0][$item]['Image'][0]['name'];
+                        //grab_image("temp2.jpg",$item,$imageName);
+
+                         //   echo "<img class=" . "img-fluid" . " src=" . "temp2.jpg" . " width=10%" . " height=10%" ."></a>";
                             echo "<strong>KID: </strong>" . $item . " | ";
                             echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
-                            echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
-                            echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . "<br>";
-                            //unlink($file);
+                            //echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
+                            echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . "<br>" . "<br>";
                         }
-
                     ?>
 
             </div>
