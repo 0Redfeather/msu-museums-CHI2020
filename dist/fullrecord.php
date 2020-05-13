@@ -81,13 +81,13 @@ $record = getData($array);
                             <div class="portfolio-hover-content"></div>
                         </div>
                         <?php
-                        $imageName = $record[0][$koraID]['Image'][0]['name'];
+                        $imageName = $record[0][$koraID]['Images'][0]['name'];
                         grab_image("temp.jpg",$koraID,$imageName);
                         ?>
                         <img class="img-fluid" src="temp.jpg"></a>
                     <div class="text-left portfolio-caption">
                         <h4>Asset Image</h4>
-                        <p class="text-muted">(click image for metadata)<?php //echo "<br>"; print_r($record);// Check out the array data coming in?></p>
+                        <p class="text-muted">(click image for metadata)<?php // echo "<br>"; print_r($record);// Check out the array data coming in?></p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-7 col-xl-7 portfolio-item"><a class="portfolio-link" data-toggle="modal" href="#portfolioModal6"></a>
@@ -105,9 +105,9 @@ $record = getData($array);
                     <div class="portfolio-caption">
                         <h4 class="text-left">Provenance&nbsp;</h4>
                         <p class="text-left text-muted"><strong>Time Period: </strong><?php echo $record[0][$koraID]['Period Name']; ?></p>
-                        <p class="text-left text-muted"><strong>Cultural Affiliation:&nbsp;</strong><?php echo $record[0][$koraID]['Cultural Affiliations']; ?></p>
+                        <p class="text-left text-muted"><strong>Cultural Affiliation:&nbsp;</strong><?php echo $record[0][$koraID]['Cultural Affiliations'][0]; ?></p>
                         <p class="text-left text-muted"><strong>Date:&nbsp;</strong><?php echo $record[0][$koraID]['Display Date']; ?></p>
-                        <p class="text-left text-muted"><strong>Site:</strong> <?php echo $record[0][$koraID]['Name Site']; ?></p>
+                        <p class="text-left text-muted"><strong>Site:</strong> <?php echo $record[0][$koraID]['Associated Site'][0]; //Need to pull site name from Site Form ?></p>
                     </div>
                     <div class="portfolio-caption">
                         <h4 class="text-left">Copyright</h4>
@@ -131,16 +131,16 @@ $record = getData($array);
                                     <h2 class="text-uppercase"><?php echo $imageName; // $record[0][$koraID]['Image'][0]['name'];?></h2>
                                     <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src="temp.jpg">
                                     <ul class="list-inline">
-                                        <li><strong>Image Caption: </strong><?php $caption = $record[0][$koraID]['Image'][0]['caption'];
+                                        <li><strong>Image Caption: </strong><?php $caption = $record[0][$koraID]['Images'][0]['caption'];
                                             if (empty($caption)) {
                                                 echo "(no caption)";
                                             } else {
                                                 echo $caption;
                                                 }
                                             ?> </li>
-                                        <li><strong>Image Date: </strong><?php echo $record[0][$koraID]['Image'][0]['timestamp'];?> (working on timestamp converter)</li>
-                                        <li><strong>Image Size: </strong><?php echo $record[0][$koraID]['Image'][0]['size'];?></li>
-                                        <li><strong>Image Type: </strong><?php echo $record[0][$koraID]['Image'][0]['type'];?></li>
+                                        <li><strong>Image Date: </strong><?php echo $record[0][$koraID]['Images'][0]['timestamp'];?> (working on timestamp converter)</li>
+                                        <li><strong>Image Size: </strong><?php echo $record[0][$koraID]['Images'][0]['size'];?></li>
+                                        <li><strong>Image Type: </strong><?php echo $record[0][$koraID]['Images'][0]['type'];?></li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-times"></i><span>&nbsp;Close</span></button></div>
                             </div>

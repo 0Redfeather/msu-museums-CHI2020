@@ -72,8 +72,8 @@
         <div class="container">
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs have to be pasted into the search bar, but a keyword search is in the works.</h3>
-                    <h4><?php
+                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs (x-xx-xx) have to be pasted into the search bar, but a keyword search is in the works.</h3>
+                    <p><?php
 
                         //print_r($record);
 
@@ -89,9 +89,11 @@
                             echo "<strong>KID: </strong>" . $item . " | ";
                             echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
                             //echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
-                            echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . "<br>" . "<br>";
+                            echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . " | ";
+                            echo "<strong>Description:</strong> " . $record[0][$item]['Description'] . " | " . "<br>";
                         }
                     ?>
+                    </p>
 
             </div>
         </div>
