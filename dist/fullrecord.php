@@ -59,7 +59,6 @@ $record = getData($array);
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
             </ul>
         </div>
     </div>
@@ -71,7 +70,7 @@ $record = getData($array);
             <div class="row">
                 <div class="col-md-12 col-lg-12 offset-md-0 text-center">
                     <h2 class="text-uppercase section-heading">Full Record</h2>
-                    <!-- <h3 class="section-subheading text-muted">Full Record Page</h3> -->
+                    <br>
                 </div>
             </div>
             <div class="row">

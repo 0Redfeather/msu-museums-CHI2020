@@ -29,23 +29,23 @@ $record = getData($array);
 <body id="page-top">
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="index.html">Home</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Available KIDs</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="index.html">Home</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
 <!--masthead -->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading"><form action="fullrecord.php" method="post">
+        <div class="masthead-subheading">
+            <form action="fullrecord.php" method="post">
                 <!-- <label for="koraID">Search:</label> -->
                 <input type="text" name="koraID" id="koraID" required>
                 <br>
@@ -54,17 +54,11 @@ $record = getData($array);
                 <input type="text" name="keywords" id="keywords">
                 <br> -->
                 <input type="submit">
-            </form></div>
-        <div>
-            <br>
-        </div>
-        <div class="text-center">
+            </form>
             <h4 class="section-heading text-uppercase">*Only Kora ID searches currently available.</h4>
-            <h4> Check Below for a catalog of available Kora IDs. </h4>
-            <h4> And please come back to see how the site improves! </h4>
+            <br>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#about">Available Kora IDs</a>
         </div>
-            <!-- <div class="masthead-heading text-uppercase"></div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="browse.php">Browse our Records</a> -->
     </div>
 </header>
 
