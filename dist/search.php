@@ -72,25 +72,22 @@
         <div class="container">
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs (x-xx-xx) have to be pasted into the search bar, but a keyword search is in the works.</h3>
+                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs (x-xx-xx) have to be pasted into the search bar, but a keyword search is in the works. You may also click on the Kora ID to check out its full record page.</h3>
                     <p><?php
-
                         //print_r($record);
-
                         $kidAvailable = array_keys($record['0']);
-
                         //print_r($kidAvailable);
 
-                        foreach($kidAvailable as $item) {
-                        //$imageName = $record[0][$item]['Image'][0]['name'];
-                        //grab_image("temp2.jpg",$item,$imageName);
-
-                         //   echo "<img class=" . "img-fluid" . " src=" . "temp2.jpg" . " width=10%" . " height=10%" ."></a>";
-                            echo "<strong>KID: </strong>" . $item . " | ";
+                        foreach($kidAvailable as $item) {  ?>
+                            <form method="post" action="fullrecord.php" class="inline">
+                                <input type="hidden" name="extra_submit_param" value="<?php echo $item;?>">
+                                <button type="submit" name="koraID" value="<?php echo $item;?>" class="link-button"><?php echo $item;?></button>
+                            </form>
+                            <?php echo " | ";
                             echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
                             //echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
                             echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . " | ";
-                            echo "<strong>Description:</strong> " . $record[0][$item]['Description'] . " | " . "<br>";
+                            echo "<strong>Description:</strong> " . $record[0][$item]['Description'] . "<br>";
                         }
                     ?>
                     </p>
