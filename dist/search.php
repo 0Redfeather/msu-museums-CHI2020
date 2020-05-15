@@ -16,6 +16,16 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
+
+<?php
+include 'functions.php';
+
+$data = formSearchBuilder($fid, $token, $flags, $fieldValues, null);
+$array = array();
+$array["forms"] = json_encode(array($data));
+
+$record = getData($array);
+?>
 <body id="page-top">
 
 <!-- Navigation-->
@@ -26,21 +36,11 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#kidrecords">Available KIDs</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Available KIDs</a></li>
             </ul>
         </div>
     </div>
 </nav>
-
-<?php
-   include 'functions.php';
-
-    $data = formSearchBuilder($fid, $token, $flags, $fieldValues, null);
-    $array = array();
-    $array["forms"] = json_encode(array($data));
-
-    $record = getData($array);
-?>
 
 <!--masthead -->
 <header class="masthead">
@@ -68,7 +68,7 @@
     </div>
 </header>
 
-    <section class="page-section bg-light" id="kidrecords">
+    <section id="about" class="page-section">
         <div class="container">
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->

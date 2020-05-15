@@ -35,17 +35,19 @@
 <!-- Masthead-->
 <header class="masthead2">
     <div class="container">
-        <div class="masthead-heading text-uppercase">Browser still under Construction!</div>
+        <div class="masthead-heading masthead-subheading">Browse</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Random Set of records</a>
     </div>
 </header>
 
 <!-- Browsing Section -->
-<section id="portfolio" class="bg-light">
+<section id="portfolio">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="text-uppercase section-heading">Browse</h2>
-                <h3 class="section-subheading text-muted">Browse records here by Collection, Location or type of Artifact</h3>
+                <h3 class="section-subheading text-muted">Browser is still under construction. Here you will be able to sort records by Collection, Location or type of Artifact</h3>
+                <br>
             </div>
         </div>
         <div class="row">
@@ -110,7 +112,56 @@
                 </div>
             </div>
         </div>
+
+    <!-- 3rd Row? -->
+    <div class="row">
+        <div class="col-sm-6 col-md-4 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                </div><img class="img-fluid" src="assets/img/portfolio/1-thumbnail.jpg"></a>
+            <div class="portfolio-caption">
+                <h4>Threads</h4>
+                <p class="text-muted">Illustration</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                </div><img class="img-fluid" src="assets/img/portfolio/2-thumbnail.jpg"></a>
+            <div class="portfolio-caption">
+                <h4>Explore</h4>
+                <p class="text-muted">Graphic Design</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                </div><img class="img-fluid" src="assets/img/portfolio/3-thumbnail.jpg"></a>
+            <div class="portfolio-caption">
+                <h4>Finish</h4>
+                <p class="text-muted">Identity</p>
+            </div>
+        </div>
     </div>
+    <!-- pagination -->
+    <div>
+        <br>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+<!-- Portfolio Modules) -->
+
 </section>
 <div class="modal fade portfolio-modal text-center" role="dialog" tabindex="-1" id="portfolioModal1">
     <div class="modal-dialog modal-lg" role="document">
