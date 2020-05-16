@@ -29,7 +29,7 @@ define("koraApiURL","https://kora.anthropology.msu.edu/api/search"); //"http://w
     function keywordQueryBuilder($keys,$method,$not=false,$fields=array(),$customWildCards=false) {
         $qkey = array();
         $qkey["search"] = "keyword";
-        $qkey["key_words"] = $keys;
+        $qkey["key_words"] = array($keys);
         $qkey["key_method"] = $method;
         if ($not)
             $qkey["not"] = $not;

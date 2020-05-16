@@ -45,9 +45,9 @@ $record = getData($array);
 <header class="masthead">
     <div class="container">
         <div class="masthead-subheading">
-            <form action="fullrecord.php" method="post">
+            <form action="browse.php" method="post">
                 <!-- <label for="koraID">Search:</label> -->
-                <input type="text" name="koraID" id="koraID" required>
+                <input type="text" name="keyWords" id="keyWords" required>
                 <br>
                 <br>
                 <!-- <label for="keywords">Keywords:</label>
@@ -55,7 +55,7 @@ $record = getData($array);
                 <br> -->
                 <input type="submit">
             </form>
-            <h4 class="section-heading text-uppercase">*Only Kora ID searches currently available.</h4>
+            <h4 class="section-heading text-uppercase">You may search by keyword here. Alternatively you may browse a list of clickable Kora IDs below for their full record pages. </h4>
             <br>
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#about">Available Kora IDs</a>
         </div>
