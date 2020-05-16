@@ -88,7 +88,7 @@ $results = getData($array);
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="text-uppercase section-heading">Browse</h2>
+                <!-- <h2 class="text-uppercase section-heading">Browse</h2> -->
                 <?php // print_r($keywords); echo "<br>"; print_r($queries); echo "<br>";echo $array["forms"];?>
                 <h3 class="section-subheading text-muted">Browser is still under construction. Here you will be able to sort records by Collection, Location or type of Artifact</h3>
                 <br>
@@ -96,6 +96,7 @@ $results = getData($array);
             </div>
         </div>
         <div class="row">
+            <!-- Fancy Box - Row 1-->
             <div class="col-sm-6 col-md-4 portfolio-item">
                 <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #1">
                     <div class="portfolio-hover">
@@ -116,104 +117,88 @@ $results = getData($array);
                     <p class="text-muted">Graphic Design</p>
                 </div>
             </div>
-
-              <!--  <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="assets/img/portfolio/1-thumbnail.jpg"></a>
-                <div class="portfolio-caption">
-                    <h4>Threads</h4>
-                    <p class="text-muted">Illustration</p>
-                </div>
-            </div>
             <div class="col-sm-6 col-md-4 portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #3">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="assets/img/portfolio/2-thumbnail.jpg"></a>
+                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
                 <div class="portfolio-caption">
                     <h4>Explore</h4>
                     <p class="text-muted">Graphic Design</p>
                 </div>
-            </div> -->
+            </div>
+
+          <!-- Fancy Box Row 2 -->
+        <div class="row">
             <div class="col-sm-6 col-md-4 portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #4">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="assets/img/portfolio/3-thumbnail.jpg"></a>
+                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
                 <div class="portfolio-caption">
-                    <h4>Finish</h4>
-                    <p class="text-muted">Identity</p>
+                    <h4>Explore</h4>
+                    <p class="text-muted">Graphic Design</p>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4 portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #5">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="assets/img/portfolio/4-thumbnail.jpg"></a>
+                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
                 <div class="portfolio-caption">
-                    <h4>Lines</h4>
-                    <p class="text-muted">Branding</p>
+                    <h4>Explore</h4>
+                    <p class="text-muted">Graphic Design</p>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4 portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #6">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid img-fluid" src="assets/img/portfolio/5-thumbnail.jpg"></a>
+                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
                 <div class="portfolio-caption">
-                    <h4>Southwest</h4>
-                    <p class="text-muted">Website Design</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="assets/img/portfolio/6-thumbnail.jpg"></a>
-                <div class="portfolio-caption">
-                    <h4>Window</h4>
-                    <p class="text-muted">Photography</p>
+                    <h4>Explore</h4>
+                    <p class="text-muted">Graphic Design</p>
                 </div>
             </div>
         </div>
 
-    <!-- 3rd Row? -->
-    <div class="row">
-        <div class="col-sm-6 col-md-4 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                </div><img class="img-fluid" src="assets/img/portfolio/1-thumbnail.jpg"></a>
-            <div class="portfolio-caption">
-                <h4>Threads</h4>
-                <p class="text-muted">Illustration</p>
+    <!-- Fancy Box 3rd Row -->
+            <div class="row">
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #4">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
+                    <div class="portfolio-caption">
+                        <h4>Explore</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #5">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
+                    <div class="portfolio-caption">
+                        <h4>Explore</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #6">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
+                    <div class="portfolio-caption">
+                        <h4>Explore</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                </div><img class="img-fluid" src="assets/img/portfolio/2-thumbnail.jpg"></a>
-            <div class="portfolio-caption">
-                <h4>Explore</h4>
-                <p class="text-muted">Graphic Design</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                </div><img class="img-fluid" src="assets/img/portfolio/3-thumbnail.jpg"></a>
-            <div class="portfolio-caption">
-                <h4>Finish</h4>
-                <p class="text-muted">Identity</p>
-            </div>
-        </div>
-    </div>
+
     <!-- pagination -->
     <div>
-        <br>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -224,16 +209,12 @@ $results = getData($array);
             </ul>
         </nav>
     </div>
+    </div>
 
-<!-- Portfolio Modules) -->
 
 </section>
 
-<!-- portfolio modules were here -->
 
-</div>
-
-<!-- Footer-->
 <footer class="footer py-4 bg-secondary">
     <div class="container">
         <div class="row align-items-center">
