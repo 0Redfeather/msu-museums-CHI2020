@@ -4,7 +4,9 @@ define("koraApiURL","https://kora.anthropology.msu.edu/api/search"); //"http://w
 // Variables
 
     $fieldValues = array("Asset ID", "Description", "General Type", "Heritage Asset Type", "Display Date", "Cultural Affiliations", "Period Name", "Associated Site", "Images", "Copyright Credit Line");
-    $token = '5e4f0278b9e13';
+    $browserFieldValues = array("Asset ID", "Description", "Heritage Asset Type", "Cultural Affiliations", "Images");
+
+$token = '5e4f0278b9e13';
     $fid = 'Heritage_Asset_7_16_'; // 16
     $flags = array("data"); // "meta"
 
@@ -126,3 +128,5 @@ define("koraApiURL","https://kora.anthropology.msu.edu/api/search"); //"http://w
 
         return $data;
     }
+
+

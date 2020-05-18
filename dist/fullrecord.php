@@ -83,7 +83,7 @@ $record = getData($array);
                         $imageName = $record[0][$koraID]['Images'][0]['name'];
                         grab_image("temp.jpg",$koraID,$imageName);
                         ?>
-                        <img class="img-fluid" src="temp.jpg"></a>
+                        <img class="img-fluid" src="<?php echo "temp.jpg";?>"</a>
                     <div class="text-left portfolio-caption">
                         <h4>Asset Image</h4>
                         <p class="text-muted">(click image for metadata)<?php // echo "<br>"; print_r($record);// Check out the array data coming in?></p>
@@ -128,7 +128,7 @@ $record = getData($array);
                             <div class="col-lg-8 mx-auto">
                                 <div class="modal-body">
                                     <h2 class="text-uppercase"><?php echo $imageName; // $record[0][$koraID]['Image'][0]['name'];?></h2>
-                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src="temp.jpg">
+                                    <p class="item-intro text-muted"></p><img class="img-fluid d-block mx-auto" src="<?php echo "temp.jpg";?>">
                                     <ul class="list-inline">
                                         <li><strong>Image Caption: </strong><?php $caption = $record[0][$koraID]['Images'][0]['caption'];
                                             if (empty($caption)) {

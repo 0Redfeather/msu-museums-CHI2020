@@ -51,7 +51,7 @@ if (!empty($_REQUEST['keyWords'])) {
     //     $queries = array($keywordQuery);
 //}
 
-$data = formSearchBuilder($fid, $token, $flags, $fieldValues, $queries);
+$data = formSearchBuilder($fid, $token, $flags, $browserFieldValues, $queries);
 
 $array = array();
 $array["forms"] = json_encode(array($data));
@@ -90,111 +90,148 @@ $results = getData($array);
             <div class="col-lg-12 text-center">
                 <!-- <h2 class="text-uppercase section-heading">Browse</h2> -->
                 <?php // print_r($keywords); echo "<br>"; print_r($queries); echo "<br>";echo $array["forms"];?>
-                <h3 class="section-subheading text-muted">Browser is still under construction. Here you will be able to sort records by Collection, Location or type of Artifact</h3>
+                <h3 class="section-subheading text-muted">Browser is still being improved, but <?php echo count($results[0]); ?> record(s) resulted for your query of <?php
+                if (!empty($_REQUEST['keyWords'])) {
+                    echo "\"$keywords\"";
+                } else {
+                    echo "all records";
+                } ?>!</h3>
                 <br>
-                <?php // print_r($results); ?>
+                <?php print_r($results); echo "<br>";
+                //$keys = array_keys($results[0]);
+                //echo "<br>" . "ARRAY KEY TEST: "; $koraID = $keys[0]; echo $keys[0];
+                //for ($keys as $index => $value) { koraID = $value;} ?>
             </div>
         </div>
+
+        <!-- Fancy Box - Row 1-->
+        <?php
+        //$koraID = '7-16-62';
+        //$caption = $results[0][$koraID]['Images'][0]['caption'];
+        //$name = $results[0][$koraID]['name'];
+        //$asset = $results[0][$koraID]['Asset ID'];
+        //$description = $results[0][$koraID]['Description'];
+        //$type = $results[0][$koraID]['Heritage Asset Type'];
+        //$affiliation = $results[0][$koraID]['Cultural Affiliations'];
+        //$imageName = $results[0][$koraID]['Images'][0]['name'];
+        //$tempName = "temp2.jpg";
+        $i = 1; ?>
+
+
         <div class="row">
-            <!-- Fancy Box - Row 1-->
+            <?php foreach (array_splice($results[0],0,3) as $browse) {
+
+                $koraID = $browse['kid'];
+                $caption = $browse['Images'][0]['caption'];
+                //$name = $results[0][$koraID]['name'];
+                $asset = $browse['Asset ID'];
+                $description = $browse['Description'];
+                $type = $browse['Heritage Asset Type'];
+                $affiliation = $browse['Cultural Affiliations'];
+                $imageName = $browse['Images'][0]['name'];
+                $tempName = "temp" . "$i" . ".jpg";
+
+                grab_image($tempName,$koraID,$imageName);
+                ?>
             <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #1">
+                <a href="<?php echo $tempName;?>" class="portfolio-link" data-fancybox="gallery" data-caption="<?php
+                echo "<strong> Description: </strong>";
+                if (!empty($description)) { echo $description;} else { echo "(No Description Available)";}
+                echo "<br>" . "<strong>Type: </strong>";
+                foreach($type as $item){echo $item . " ";}
+                echo "<br>" . "<strong>Cultural Affiliations: </strong>";
+                foreach($affiliation as $item){echo $item . " ";}
+                ?>">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
+                    </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
                 <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
+                    <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
+                    <form method="post" action="fullrecord.php" class="inline">
+                        <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
+                        <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
+                    </form>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #2">
-                     <div class="portfolio-hover">
-                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                     </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #3">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
-                </div>
-            </div>
+            <?php $i++;
+            }?>
 
           <!-- Fancy Box Row 2 -->
-        <div class="row">
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #4">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
+            <?php foreach (array_splice($results[0],0,3) as $browse) {
+
+                $koraID = $browse['kid'];
+                $caption = $browse['Images'][0]['caption'];
+                //$name = $results[0][$koraID]['name'];
+                $asset = $browse['Asset ID'];
+                $description = $browse['Description'];
+                $type = $browse['Heritage Asset Type'];
+                $affiliation = $browse['Cultural Affiliations'];
+                $imageName = $browse['Images'][0]['name'];
+                $tempName = "temp" . "$i" . ".jpg";
+
+                grab_image($tempName,$koraID,$imageName);
+                ?>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a href="<?php echo $tempName;?>" class="portfolio-link" data-fancybox="gallery" data-caption="<?php
+                    echo "<strong> Description: </strong>";
+                    if (!empty($description)) { echo $description;} else { echo "(No Description Available)";}
+                    echo "<br>" . "<strong>Type: </strong>";
+                    foreach($type as $item){echo $item . " ";}
+                    echo "<br>" . "<strong>Cultural Affiliations: </strong>";
+                    foreach($affiliation as $item){echo $item . " ";}
+                    ?>">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
+                    <div class="portfolio-caption">
+                        <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
+                        <form method="post" action="fullrecord.php" class="inline">
+                            <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
+                            <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #5">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 portfolio-item">
-                <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #6">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                    </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                <div class="portfolio-caption">
-                    <h4>Explore</h4>
-                    <p class="text-muted">Graphic Design</p>
-                </div>
-            </div>
-        </div>
+                <?php $i++;
+            } ?>
+
 
     <!-- Fancy Box 3rd Row -->
-            <div class="row">
-                <div class="col-sm-6 col-md-4 portfolio-item">
-                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #4">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                    <div class="portfolio-caption">
-                        <h4>Explore</h4>
-                        <p class="text-muted">Graphic Design</p>
+                <?php foreach (array_splice($results[0],0,3) as $browse) {
+
+                    $koraID = $browse['kid'];
+                    $caption = $browse['Images'][0]['caption'];
+                    //$name = $results[0][$koraID]['name'];
+                    $asset = $browse['Asset ID'];
+                    $description = $browse['Description'];
+                    $type = $browse['Heritage Asset Type'];
+                    $affiliation = $browse['Cultural Affiliations'];
+                    $imageName = $browse['Images'][0]['name'];
+                    $tempName = "temp" . "$i" . ".jpg";
+
+                    grab_image($tempName,$koraID,$imageName);
+                    ?>
+                    <div class="col-sm-6 col-md-4 portfolio-item">
+                        <a href="<?php echo $tempName;?>" class="portfolio-link" data-fancybox="gallery" data-caption="<?php
+                        echo "<strong> Description: </strong>";
+                        if (!empty($description)) { echo $description;} else { echo "(No Description Available)";}
+                        echo "<br>" . "<strong>Type: </strong>";
+                        foreach($type as $item){echo $item . " ";}
+                        echo "<br>" . "<strong>Cultural Affiliations: </strong>";
+                        foreach($affiliation as $item){echo $item . " ";}
+                        ?>">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                            </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
+                        <div class="portfolio-caption">
+                            <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
+                            <form method="post" action="fullrecord.php" class="inline">
+                                <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
+                                <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-4 portfolio-item">
-                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #5">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                    <div class="portfolio-caption">
-                        <h4>Explore</h4>
-                        <p class="text-muted">Graphic Design</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 portfolio-item">
-                    <a href="temp.jpg" class="portfolio-link" data-fancybox="gallery" data-caption="Caption #6">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="temp.jpg" alt="" /> </a>
-                    <div class="portfolio-caption">
-                        <h4>Explore</h4>
-                        <p class="text-muted">Graphic Design</p>
-                    </div>
-                </div>
-            </div>
+                    <?php $i++;
+                } ?>
         </div>
 
     <!-- pagination -->
