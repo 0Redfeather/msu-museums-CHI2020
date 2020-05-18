@@ -58,6 +58,8 @@ $array["forms"] = json_encode(array($data));
 
 $results = getData($array);
 
+$totalRecords = count($results[0]);
+
 ?>
 
 <body id="page-top">
@@ -90,17 +92,15 @@ $results = getData($array);
             <div class="col-lg-12 text-center">
                 <!-- <h2 class="text-uppercase section-heading">Browse</h2> -->
                 <?php // print_r($keywords); echo "<br>"; print_r($queries); echo "<br>";echo $array["forms"];?>
-                <h3 class="section-subheading text-muted">Browser is still being improved, but <?php echo count($results[0]); ?> record(s) resulted for your query of <?php
+                <h3 class="section-subheading text-muted">Browser is still being improved, but <?php echo $totalRecords; ?> record(s) resulted for your query of <?php
                 if (!empty($_REQUEST['keyWords'])) {
                     echo "\"$keywords\"";
                 } else {
                     echo "all records";
                 } ?>!</h3>
                 <br>
-                <?php print_r($results); echo "<br>";
-                //$keys = array_keys($results[0]);
-                //echo "<br>" . "ARRAY KEY TEST: "; $koraID = $keys[0]; echo $keys[0];
-                //for ($keys as $index => $value) { koraID = $value;} ?>
+                <?php //print_r($results); echo "<br>";
+                ?>
             </div>
         </div>
 
@@ -236,6 +236,10 @@ $results = getData($array);
 
     <!-- pagination -->
     <div>
+        <?php
+        // Get total page number
+        //$totalPages = intdiv($totalRecords,9); echo $totalPages; ?>
+
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>

@@ -66,6 +66,7 @@ $token = '5e4f0278b9e13';
 // curl for getting data from kora
 
     function getData($jsonQuery) {
+        // Initiating curl parameters to get data from the Kora API
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, "https://kora.anthropology.msu.edu/api/search");
@@ -75,9 +76,9 @@ $token = '5e4f0278b9e13';
 
         $result = curl_exec($curl);
 
-        curl_close($curl);
-
        $result = json_decode($result, true);
+
+        curl_close($curl);
 
        if (isset($result['records'])) {
            return $result['records'];
@@ -87,6 +88,8 @@ $token = '5e4f0278b9e13';
     }
 
     function grab_image($saveto,$koraID,$imageName){
+        // Initiating curl parameters to get the image page for a Heritage Asset
+        // This pulls the image, and saves it to the repository before we end up deleting it.
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://kora.anthropology.msu.edu/files/$koraID/$imageName");
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -96,17 +99,31 @@ $token = '5e4f0278b9e13';
 
         $raw=curl_exec($ch);
 
-        curl_close ($ch);
-
+        // Deleting file path that the image you are attempting to retrieve will be saved to.
         if(file_exists($saveto)){
         unlink($saveto);
         }
 
+        // Saving the file to the desired filepath, which we will then be able to call in the code.
+        // Will have to figure out a way to directly insert the images from the Kora API into your code without having to seperately save it.
         $fp = fopen($saveto,'x');
-
-        fwrite($fp, $raw);
-
+        fwrite($fp, $raw); //$raw
         fclose($fp);
+
+        // Resizing the images and Lowering the resolution to make it easier to handle and to make our images more valuable.
+        $percent = 0.35;
+        list($width, $height) = getimagesize($saveto);
+        $new_width = $width * $percent;
+        $new_height = $height * $percent;
+
+        $image_p = imagecreatetruecolor($new_width, $new_height);
+        $image = imagecreatefromjpeg($saveto);
+        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+        //Saving newly formatted image to original file path.
+        imagejpeg($image_p, $saveto, 50);
+
+        curl_close ($ch);
 }
 
 // Get functions to get various things from Kora's API
