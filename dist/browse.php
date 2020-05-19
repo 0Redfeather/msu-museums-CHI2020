@@ -22,15 +22,29 @@
 // Getting user submitted data from search.php
 
 //$koraID = $_REQUEST['searchResults'];
-//$initialKeyword = explode(" ", $_REQUEST['keyWords']);
+//
 //$keywords = array();
 //foreach ($initialKeyword as $key => $value) {
 //    $keywords[]=$value;
 //}
 
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
+$offset = ($page-1) * 9;
+
 include 'functions.php';
+
 if (!empty($_REQUEST['keyWords'])) {
     $keywords=$_REQUEST['keyWords'];
+    $initialKeyword = explode(" ", $_REQUEST['keyWords']);
+    foreach ($initialKeyword as $thing) {
+        $keywordQuery = array();
+        $keywordQuery[] = $thing;
+    }
     $keywordQuery = keywordQueryBuilder("$keywords", "OR");
     $queries = array($keywordQuery);
 } else {
@@ -119,7 +133,7 @@ $totalRecords = count($results[0]);
 
 
         <div class="row">
-            <?php foreach (array_splice($results[0],0,3) as $browse) {
+            <?php foreach (array_splice($results[0],$offset,3) as $browse) {
 
                 $koraID = $browse['kid'];
                 $caption = $browse['Images'][0]['caption'];
@@ -157,7 +171,7 @@ $totalRecords = count($results[0]);
             }?>
 
           <!-- Fancy Box Row 2 -->
-            <?php foreach (array_splice($results[0],0,3) as $browse) {
+            <?php foreach (array_splice($results[0],$offset,3) as $browse) {
 
                 $koraID = $browse['kid'];
                 $caption = $browse['Images'][0]['caption'];
@@ -196,7 +210,7 @@ $totalRecords = count($results[0]);
 
 
     <!-- Fancy Box 3rd Row -->
-                <?php foreach (array_splice($results[0],0,3) as $browse) {
+                <?php foreach (array_splice($results[0],$offset,3) as $browse) {
 
                     $koraID = $browse['kid'];
                     $caption = $browse['Images'][0]['caption'];
@@ -238,15 +252,14 @@ $totalRecords = count($results[0]);
     <div>
         <?php
         // Get total page number
-        //$totalPages = intdiv($totalRecords,9); echo $totalPages; ?>
+        $totalPages = ceil($totalRecords/9);?>
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>"><a class="page-link" href="<?php if($page<= 1){ echo '#'; } else { echo "?page=".($page - 1); } ?>">Previous</a></li>
+                <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($page >= $totalPages){ echo '#'; } else { echo "?page=".($page + 1); } ?>">Next</a></li>
+                <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; }?>"><a class="page-link" href="?page=<?php echo $totalPages; ?>">Last</a></li>
             </ul>
         </nav>
     </div>
