@@ -33,11 +33,6 @@ $kidQuery = kidQueryBuilder($idArray);
 
 //if ($keywords == array("")) {
 $queries = array($kidQuery);
-//$queries = json_encode($queries);
-//} else {
-//    $keywordQuery = keywordQueryBuilder($keywords, "AND");
-//   $queries = array($kidQuery, $keywordQuery);
-//}
 
 $data = formSearchBuilder($fid, $token, $flags, $fieldValues, $queries);
 
@@ -67,10 +62,15 @@ $record = getData($array);
 <!-- Full Record Content -->
 <section id="portfolio" class="bg-secondary">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 offset-md-0 text-center">
+                <div class="col-md-12 col-lg-12 text-center">
                     <h2 class="text-uppercase section-heading">Full Record</h2>
                     <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 portfolio-caption text-center">
+                    <br>
+                    <h2>Fancy Box</h2>
                 </div>
             </div>
             <div class="row">

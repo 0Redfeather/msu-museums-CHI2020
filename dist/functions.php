@@ -126,24 +126,7 @@ $token = '5e4f0278b9e13';
         curl_close ($ch);
 }
 
-// Get functions to get various things from Kora's API
+function pagination (){
 
-    function getProjectForms() {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "https://kora.anthropology.msu.edu/api/projects/7/forms");
-        $data = curl_exec($curl);
-        curl_close($curl);
-        return $data;
-    }
-
-    function getFormFields() {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "https://kora.anthropology.msu.edu/api/projects/7/forms/16/fields");
-        $data = curl_exec($curl);
-
-        curl_close($curl);
-
-        return $data;
-    }
-
+}
 

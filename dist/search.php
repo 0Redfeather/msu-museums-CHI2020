@@ -29,41 +29,42 @@ $record = getData($array);
 <body id="page-top">
 
 <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="index.html">Home</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="browse.php">Browse</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-<!--masthead -->
-<header class="masthead">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <div class="masthead-subheading">
-            <form action="browse.php" method="post">
-                <!-- <label for="koraID">Search:</label> -->
-                <input type="text" name="keyWords" id="keyWords" required>
-                <br>
-                <br>
-                <!-- <label for="keywords">Keywords:</label>
-                <input type="text" name="keywords" id="keywords">
-                <br> -->
-                <input type="submit">
-            </form>
-            <h4 class="section-heading text-uppercase">You may search by keyword here. Alternatively you may browse a list of clickable Kora IDs below for their full record pages. </h4>
-            <br>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#about">Available Kora IDs</a>
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="search.php">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="browse.php">browse</a>
+                </li>
+            </ul>
         </div>
     </div>
-</header>
+</nav>
 
     <section id="about" class="page-section">
         <div class="container">
+            <div class="masthead-subheading">
+
+                <h4 class="section-heading text-uppercase">You may search by keyword here. Alternatively you may browse a list of clickable Kora IDs below for their full record pages. </h4>
+                <form action="browse.php" method="post">
+                    <!-- <label for="koraID">Search:</label> -->
+                    <input type="text" name="keyWords" id="keyWords" required>
+                    <br>
+                    <br>
+                    <!-- <label for="keywords">Keywords:</label>
+                    <input type="text" name="keywords" id="keywords">
+                    <br> -->
+                    <input type="submit">
+                </form>
+                <br>
+            </div>
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->
                 <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs (x-xx-xx) have to be pasted into the search bar, but a keyword search is in the works. You may also click on the Kora ID to check out its full record page.</h3>

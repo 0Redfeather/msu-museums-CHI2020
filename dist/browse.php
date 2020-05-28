@@ -18,86 +18,87 @@
     <!-- Fancy Box CSS -->
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
 </head>
+
 <?php
-// Getting user submitted data from search.php
+// Getting necessary data for the page.
 
-//$koraID = $_REQUEST['searchResults'];
-//
-//$keywords = array();
-//foreach ($initialKeyword as $key => $value) {
-//    $keywords[]=$value;
-//}
-
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
+// Getting page number
+if (isset($_REQUEST['page'])) {
+    $page = $_REQUEST['page'];
 } else {
     $page = 1;
 }
 
+// Setting offset for fancyboxes to pull data from php arrays.
 $offset = ($page-1) * 9;
 
+// Including functions page to pull data.
 include 'functions.php';
 
-if (!empty($_REQUEST['keyWords'])) {
-    $keywords=$_REQUEST['keyWords'];
-    $initialKeyword = explode(" ", $_REQUEST['keyWords']);
-    foreach ($initialKeyword as $thing) {
-        $keywordQuery = array();
-        $keywordQuery[] = $thing;
+// Getting the data from a keyword search if it exists and and building a query array.
+//Really need to work out how to explode strings and search for individual words in strings
+if (!empty($_REQUEST['keyWords']) || !empty($keywords)) {
+    if (!empty($_REQUEST['keyWords'])) {
+        $keywords=$_REQUEST['keyWords'];
+        $initialKeyword = explode(" ", $_REQUEST['keyWords']);
+        foreach ($initialKeyword as $other => $thing) {
+            $explodedWords = array();
+            $explodedWords[] = $thing;
+        }
+        $keywordQuery = keywordQueryBuilder("$keywords", "OR");
+        $queries = array($keywordQuery);
+    } elseif (!empty($keywords)) {
+        $keywordQuery = keywordQueryBuilder("$keywords", "OR");
+        $queries = array($keywordQuery);
+    } else {
+        echo "An error happened.";
     }
-    $keywordQuery = keywordQueryBuilder("$keywords", "OR");
-    $queries = array($keywordQuery);
 } else {
     $queries=null;
+    $keywords = null;
 }
 
-// Turning kid into an array
-
-//$idArray = array($koraID);
-
-//$kidQuery = kidQueryBuilder($idArray);
-
-//if ($keywords == array("")) {
-//$queries = array($kidQuery);
-//$queries = json_encode($queries);
-//} else {
-    //   $keywordQuery = keywordQueryBuilder("$keywords", "OR");
-    //     $queries = array($keywordQuery);
-//}
-
+//Building form for performing a search in kora - see functions.php
 $data = formSearchBuilder($fid, $token, $flags, $browserFieldValues, $queries);
 
+// Building an array to json_encode the form for searching. This is what's necessary to get the code back
 $array = array();
 $array["forms"] = json_encode(array($data));
 
+//Perform a cURL to get the data back from Kora and store into $results. Get back an array.
 $results = getData($array);
 
+//Counting the total number of records received
 $totalRecords = count($results[0]);
 
+//Making a variable to describe the total number of pages that I want since I am displaying 9 records per page
+$totalPages = ceil($totalRecords/9);
+
+//setting variable for image counters - without this, it only displays the same image.
+$i = 1;
 ?>
 
 <body id="page-top">
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="index.html">Home</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="search.php">Search</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Browse</a></li>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="search.php">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="browse.php">Browse</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<!-- Masthead-->
-<header class="masthead2">
-    <div class="container">
-        <div class="masthead-heading masthead-subheading">Browse</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Random Set of records</a>
-    </div>
-</header>
 
 <!-- Browsing Section -->
 <section id="portfolio">
@@ -105,46 +106,60 @@ $totalRecords = count($results[0]);
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- <h2 class="text-uppercase section-heading">Browse</h2> -->
-                <?php // print_r($keywords); echo "<br>"; print_r($queries); echo "<br>";echo $array["forms"];?>
-                <h3 class="section-subheading text-muted">Browser is still being improved, but <?php echo $totalRecords; ?> record(s) resulted for your query of <?php
-                if (!empty($_REQUEST['keyWords'])) {
-                    echo "\"$keywords\"";
-                } else {
-                    echo "all records";
-                } ?>!</h3>
+                <h3 class="section-subheading text-muted">Browser is still being improved, but <?php echo $totalRecords; ?> record(s) resulted for your query of
+                    <?php if (!empty($_REQUEST['keyWords'])) { echo "\"$keywords\""; } else { echo "all records"; } ?>! You are on page <?php echo $page;?> of <?php echo $totalPages?></h3>
                 <br>
-                <?php //print_r($results); echo "<br>";
-                ?>
             </div>
         </div>
 
-        <!-- Fancy Box - Row 1-->
-        <?php
-        //$koraID = '7-16-62';
-        //$caption = $results[0][$koraID]['Images'][0]['caption'];
-        //$name = $results[0][$koraID]['name'];
-        //$asset = $results[0][$koraID]['Asset ID'];
-        //$description = $results[0][$koraID]['Description'];
-        //$type = $results[0][$koraID]['Heritage Asset Type'];
-        //$affiliation = $results[0][$koraID]['Cultural Affiliations'];
-        //$imageName = $results[0][$koraID]['Images'][0]['name'];
-        //$tempName = "temp2.jpg";
-        $i = 1; ?>
+<!-- Top pagination Code -->
+        <?php if ($totalRecords >= 4){ // need to change this so that it is the total number of records on the page. stops top pagination links from appearing when
+            // there are a small amount of records?>
+         <div>
+            <?php  // Each pagination link submits a new form to browse.php with the proper page number and submitted keywords?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="1">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">First</button>
+                        </form>
+                    </li>
+                    <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo ($page - 1);?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Previous</button>
+                        </form></li>
+                    <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; } ?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo ($page + 1);?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Next</button>
+                        </form>
+                    </li>
+                    <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo $totalPages; ?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Last</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
+        <?php } ?>
 
+        <!-- Fancy Box -->
+        <?php for ($x=1; $x<=3; ++$x) { ?>
         <div class="row">
             <?php foreach (array_splice($results[0],$offset,3) as $browse) {
 
                 $koraID = $browse['kid'];
-                $caption = $browse['Images'][0]['caption'];
-                //$name = $results[0][$koraID]['name'];
                 $asset = $browse['Asset ID'];
                 $description = $browse['Description'];
                 $type = $browse['Heritage Asset Type'];
                 $affiliation = $browse['Cultural Affiliations'];
                 $imageName = $browse['Images'][0]['name'];
                 $tempName = "temp" . "$i" . ".jpg";
-
                 grab_image($tempName,$koraID,$imageName);
                 ?>
             <div class="col-sm-6 col-md-4 portfolio-item">
@@ -160,110 +175,51 @@ $totalRecords = count($results[0]);
                         <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
                     </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
                 <div class="portfolio-caption">
-                    <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
+                    <h4><?php echo $asset;?></h4>
                     <form method="post" action="fullrecord.php" class="inline">
                         <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
                         <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
                     </form>
                 </div>
             </div>
-            <?php $i++;
-            }?>
-
-          <!-- Fancy Box Row 2 -->
-            <?php foreach (array_splice($results[0],$offset,3) as $browse) {
-
-                $koraID = $browse['kid'];
-                $caption = $browse['Images'][0]['caption'];
-                //$name = $results[0][$koraID]['name'];
-                $asset = $browse['Asset ID'];
-                $description = $browse['Description'];
-                $type = $browse['Heritage Asset Type'];
-                $affiliation = $browse['Cultural Affiliations'];
-                $imageName = $browse['Images'][0]['name'];
-                $tempName = "temp" . "$i" . ".jpg";
-
-                grab_image($tempName,$koraID,$imageName);
-                ?>
-                <div class="col-sm-6 col-md-4 portfolio-item">
-                    <a href="<?php echo $tempName;?>" class="portfolio-link" data-fancybox="gallery" data-caption="<?php
-                    echo "<strong> Description: </strong>";
-                    if (!empty($description)) { echo $description;} else { echo "(No Description Available)";}
-                    echo "<br>" . "<strong>Type: </strong>";
-                    foreach($type as $item){echo $item . " ";}
-                    echo "<br>" . "<strong>Cultural Affiliations: </strong>";
-                    foreach($affiliation as $item){echo $item . " ";}
-                    ?>">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
-                    <div class="portfolio-caption">
-                        <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
-                        <form method="post" action="fullrecord.php" class="inline">
-                            <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
-                            <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
-                        </form>
-                    </div>
-                </div>
-                <?php $i++;
-            } ?>
-
-
-    <!-- Fancy Box 3rd Row -->
-                <?php foreach (array_splice($results[0],$offset,3) as $browse) {
-
-                    $koraID = $browse['kid'];
-                    $caption = $browse['Images'][0]['caption'];
-                    //$name = $results[0][$koraID]['name'];
-                    $asset = $browse['Asset ID'];
-                    $description = $browse['Description'];
-                    $type = $browse['Heritage Asset Type'];
-                    $affiliation = $browse['Cultural Affiliations'];
-                    $imageName = $browse['Images'][0]['name'];
-                    $tempName = "temp" . "$i" . ".jpg";
-
-                    grab_image($tempName,$koraID,$imageName);
-                    ?>
-                    <div class="col-sm-6 col-md-4 portfolio-item">
-                        <a href="<?php echo $tempName;?>" class="portfolio-link" data-fancybox="gallery" data-caption="<?php
-                        echo "<strong> Description: </strong>";
-                        if (!empty($description)) { echo $description;} else { echo "(No Description Available)";}
-                        echo "<br>" . "<strong>Type: </strong>";
-                        foreach($type as $item){echo $item . " ";}
-                        echo "<br>" . "<strong>Cultural Affiliations: </strong>";
-                        foreach($affiliation as $item){echo $item . " ";}
-                        ?>">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                            </div><img class="img-fluid" src="<?php echo $tempName;?>" alt="" /> </a>
-                        <div class="portfolio-caption">
-                            <h4><?php echo $asset;//if(!empty($name)) { echo $name;} else { echo $asset;}?></h4>
-                            <form method="post" action="fullrecord.php" class="inline">
-                                <input type="hidden" name="extra_submit_param" value="<?php echo $koraID;?>">
-                                <button type="submit" name="koraID" value="<?php echo $koraID;?>" class="btn btn-secondary">Full Record Page</button>
-                            </form>
-                        </div>
-                    </div>
-                    <?php $i++;
-                } ?>
+            <?php $i++;}?>
         </div>
+        <?php } ?>
 
-    <!-- pagination -->
-    <div>
-        <?php
-        // Get total page number
-        $totalPages = ceil($totalRecords/9);?>
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>"><a class="page-link" href="?page=1">First</a></li>
-                <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>"><a class="page-link" href="<?php if($page<= 1){ echo '#'; } else { echo "?page=".($page - 1); } ?>">Previous</a></li>
-                <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; } ?>"><a class="page-link" href="<?php if($page >= $totalPages){ echo '#'; } else { echo "?page=".($page + 1); } ?>">Next</a></li>
-                <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; }?>"><a class="page-link" href="?page=<?php echo $totalPages; ?>">Last</a></li>
-            </ul>
-        </nav>
+    <!-- pagination bottom-->
+        <div>
+            <?php  // Each pagination link submits a new form to browse.php with the proper page number and submitted keywords?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="1">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">First</button>
+                        </form>
+                    </li>
+                    <li class="page-item <?php if($page <= 1){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo ($page - 1);?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Previous</button>
+                        </form></li>
+                    <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; } ?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo ($page + 1);?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Next</button>
+                        </form>
+                    </li>
+                    <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; }?>">
+                        <form method="post" action="browse.php" class="inline">
+                            <input type="hidden" name="page" value="<?php echo $totalPages; ?>">
+                            <button class="page-link" type="submit" name="keyWords" value="<?php echo $keywords?>">Last</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-    </div>
+
 
 
 </section>
