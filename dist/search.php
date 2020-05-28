@@ -52,7 +52,7 @@ $record = getData($array);
         <div class="container">
             <div class="masthead-subheading">
 
-                <h4 class="section-heading text-uppercase">You may search by keyword here. Alternatively you may browse a list of clickable Kora IDs below for their full record pages. </h4>
+                <h4 class="section-heading text-uppercase">You may search by keyword here.</h4>
                 <form action="browse.php" method="post">
                     <!-- <label for="koraID">Search:</label> -->
                     <input type="text" name="keyWords" id="keyWords" required>
@@ -67,7 +67,7 @@ $record = getData($array);
             </div>
             <div class="text-left">
                <!-- <h2 class="section-heading text-uppercase">About</h2> -->
-                <h3 class="text-muted section-subheading">Here is a list of all Kora Records. Currently, Kora IDs (x-xx-xx) have to be pasted into the search bar, but a keyword search is in the works. You may also click on the Kora ID to check out its full record page.</h3>
+                <h3 class="text-muted section-subheading">You may try words like "lithic", or "projectile point" to see what the results are. The Keyword Search is still being improved to be more powerful. In the meantime, here is a list of all currently available cultural heritage assets. More assets will also be made available as the site is updated. You may also click on the Blue link to check out an asset's full record page.</h3>
                     <p><?php
                         //print_r($record);
                         $kidAvailable = array_keys($record['0']);
@@ -75,11 +75,11 @@ $record = getData($array);
 
                         foreach($kidAvailable as $item) {  ?>
                             <form method="post" action="fullrecord.php" class="inline">
-                                <input type="hidden" name="extra_submit_param" value="<?php echo $item;?>">
-                                <button type="submit" name="koraID" value="<?php echo $item;?>" class="link-button"><?php echo $item;?></button>
+                                <!-- <input type="hidden" name="extra_submit_param" value="<?php echo $item;?>"> -->
+                                <button type="submit" name="koraID" value="<?php echo $item;?>" class="link-button"><?php echo $record[0][$item]['Asset ID'];?></button>
                             </form>
                             <?php echo " | ";
-                            echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
+                            //echo "<strong>Asset ID: </strong>" . $record[0][$item]['Asset ID'] . " | ";
                             //echo "<strong>Site:</strong> " . $record[0][$item]['Name Site'] . " | ";
                             echo "<strong>Asset Type: </strong>" . $record[0][$item]['General Type'] . " | ";
                             echo "<strong>Description:</strong> " . $record[0][$item]['Description'] . "<br>";

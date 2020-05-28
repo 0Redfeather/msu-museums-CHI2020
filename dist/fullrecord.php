@@ -67,11 +67,11 @@ $record = getData($array);
                     <br>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12 col-lg-12 portfolio-caption text-center">
                     <br>
                     <h2>Fancy Box</h2>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-5 col-xl-5 portfolio-item">
