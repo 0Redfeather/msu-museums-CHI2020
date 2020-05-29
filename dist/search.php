@@ -43,6 +43,9 @@ $record = getData($array);
                 <li class="nav-item">
                     <a class="nav-link" href="browse.php">browse</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="random.php">Random</a>
+                </li>
             </ul>
         </div>
     </div>

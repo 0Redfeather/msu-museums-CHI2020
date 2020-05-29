@@ -95,6 +95,9 @@ $i = 1;
                 <li class="nav-item">
                     <a class="nav-link" href="browse.php">Browse</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="random.php">Random</a>
+                </li>
             </ul>
         </div>
     </div>
